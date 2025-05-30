@@ -40,14 +40,6 @@ public class Cards {
         }
 }
 
-    // This should be used for just test.
-    public void printFully() {
-        System.out.printf(base,getCard00(),getCard01(),getCard02(),getCard03(),
-getCard10(),getCard11(),getCard12(),getCard13(),
-getCard20(),getCard21(),getCard22(),getCard23(),
-getCard30(),getCard31(),getCard32(),getCard33());
-}
-
     public boolean isRevealed(int a1,int a2) {
         int cardPlace = (a1*4)+a2;
         if (baseArray[cardPlace].equals("*")) {
@@ -91,6 +83,14 @@ getCard30(),getCard31(),getCard32(),getCard33());
         System.out.println(output);
     }
 
+    // This should be used for just test.
+    public void printFully() {
+        System.out.printf(base,getCard00(),getCard01(),getCard02(),getCard03(),
+getCard10(),getCard11(),getCard12(),getCard13(),
+getCard20(),getCard21(),getCard22(),getCard23(),
+getCard30(),getCard31(),getCard32(),getCard33());
+}
+    
     public String getCard00() {
         return cardDeck[0][0];
     }
