@@ -1,4 +1,4 @@
-package CGGABuilds.CGGA;
+package SimpleCardGame;
 import java.util.Random;
 import java.util.Arrays;
 
