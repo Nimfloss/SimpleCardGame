@@ -1,4 +1,4 @@
-package CGGABuilds.CGGA;
+package SimpleCardGame;
 import java.util.Scanner;
 import java.lang.Thread;
 import java.util.InputMismatchException;
