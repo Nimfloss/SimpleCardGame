@@ -13,8 +13,6 @@ public class NumberGuess {
         int secondLine;
         int secondCollumn;
 
-        // I got it too late but i should use input handler at least in another project.
-        
         while (true){
             if (trialCardDeck.isAllRevealed() == true) {
                 System.out.println("YOU WON!");
