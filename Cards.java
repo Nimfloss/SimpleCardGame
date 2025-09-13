@@ -1,142 +1,159 @@
-package SimpleCardGame;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Arrays;
 
-public class Cards {
-    private String[][] cardDeck = new String[4][4];
-    private String output;
-    private String[] baseArray = new String[16];
-    private String base =    "------------\n"+
-                             "[%s][%s][%s][%s]\n"+
-                             "[%s][%s][%s][%s]\n"+
-                             "[%s][%s][%s][%s]\n"+
-                             "[%s][%s][%s][%s]\n"+
-                             "------------"; 
+public class Cards{
+	Random random = new Random();
+	String outputFlowFull;
+	String outputNumbLine1 = "!  1    2    3    4   !\n";
+	String outputFlowLine1 = "! [%s] [%s] [%s] [%s] !\n";
+	String outputNumbLine2 = "!  5    6    7    8   !\n";
+	String outputFlowLine2 = "! [%s] [%s] [%s] [%s] !\n";
+	String outputNumbLine3 = "!  9    10   11   12  !\n";
+	String outputFlowLine3 = "! [%s] [%s] [%s] [%s] !\n";
+	String outputNumbLine4 = "!  13   14   15   16  !\n";
+	String outputFlowLine4 = "! [%s] [%s] [%s] [%s] !\n";
+	String nunrevealedCard = "??";
 
-    public void startDeck() {
-        Arrays.fill(baseArray,"*");
-        String[] cards = {"A","B","C","D","E","F","G","H","A","B","C","D","E","F","G","H"};
-        String[] places = {
-            "00","01","02","03",
-            "10","11","12","13",
-            "20","21","22","23",
-            "30","31","32","33"};
-        for (String a : cards) {
-            while(true) {
-                Random rand = new Random();
-                int placeRand = rand.nextInt(16);
-                if (places[placeRand].equals("0")) {
-                    continue;
-                }
-                else {
-                    String placeHold = places[placeRand];
-                    int firstHold = Character.getNumericValue(placeHold.charAt(0));
-                    int secondHold = Character.getNumericValue(placeHold.charAt(1));
-                    cardDeck[firstHold][secondHold] = a;
-                    places[placeRand] = "0";
-                    break;
-                }
-            }
-        }
-}
+	ArrayList<String> activeCardFlowList = new ArrayList<String>();
+	ArrayList<Boolean> revealedCards = new ArrayList<Boolean>();
+	ArrayList<String> cardsList = new ArrayList<String>();
+	ArrayList<Integer> nonOccupiedCardLocations = new ArrayList<Integer>();
+	ArrayList<String> charsList = new ArrayList<String>();
+	ArrayList<String> outputChart = new ArrayList<String>();
 
-    public boolean isRevealed(int a1,int a2) {
-        int cardPlace = (a1*4)+a2;
-        if (baseArray[cardPlace].equals("*")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+	public void loadOutputFlowFull() {
+		outputFlowFull = outputNumbLine1 + outputFlowLine1 +
+			outputNumbLine2 + outputFlowLine2 +
+			outputNumbLine3 + outputFlowLine3 +
+			outputNumbLine4 + outputFlowLine4;
+	}
 
-    public void reveal(int a1,int a2) {
-        int cardPlace = (a1*4)+a2;
-        baseArray[cardPlace] = cardDeck[a1][a2];
-    }
+	public void createSubsystem() {
+		charsList.add("A ");
+		charsList.add("A ");
+		charsList.add("B ");
+		charsList.add("B ");
+		charsList.add("C ");
+		charsList.add("C ");
+		charsList.add("D ");
+		charsList.add("D ");
+		charsList.add("E ");
+		charsList.add("E ");
+		charsList.add("F ");
+		charsList.add("F ");
+		charsList.add("G ");
+		charsList.add("G ");
+		charsList.add("H ");
+		charsList.add("H ");
 
-    public void unreveal(int a1,int a2) {
-        int cardPlace = (a1*4)+a2;
-        baseArray[cardPlace] = "*";
-    }
+		// revealedCards constructor --> actually using new Card class would be more usefull.
+		for (int i=1;i<17;i++) {
+			revealedCards.add(false);
+		}
+		for (int i=1;i<17;i++) {
+			cardsList.add(null);
+		}
+		for (int i=0;i<16;i++) {
+			activeCardFlowList.add(null);
+		}
 
-    public boolean isMatching(int a11,int a12,int a21,int a22) {
-        if (cardDeck[a11][a12].equals(cardDeck[a21][a22])) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+		randomizeCards();
 
-    public boolean isAllRevealed() {
-        for (String item : baseArray) {
-            if (item.equals("*")) {
-                return false;
-        }
-    }
-        return true;
-}
+	}
+	
+	public void printCardsAsRandomized() {
+		for (int i=0;i<16;i++) {
+			System.out.printf("Index = %d\nChar = %s\n----\n",i,cardsList.get(i));
+		}
+	}
+	public boolean isAllCardsRevealed() {
+		boolean isAllCardsRevealedTemp = true;
+		for (int i = 0;i<16;i++) {
+			if (!isCardRevealed(i)){
+				isAllCardsRevealedTemp = false;
+			}
+		}
+		return isAllCardsRevealedTemp;
+	}
 
-    public void updateOutput() {
-        output = String.format(base,(Object[])baseArray);
-        System.out.println(output);
-    }
+	public boolean isCardRevealed(int cardNumber) {
+		return (revealedCards.get(cardNumber));
+	}
 
-    // This should be used for just test.
-    public void printFully() {
-        System.out.printf(base,getCard00(),getCard01(),getCard02(),getCard03(),
-getCard10(),getCard11(),getCard12(),getCard13(),
-getCard20(),getCard21(),getCard22(),getCard23(),
-getCard30(),getCard31(),getCard32(),getCard33());
-}
-    
-    public String getCard00() {
-        return cardDeck[0][0];
-    }
-    public String getCard01() {
-        return cardDeck[0][1];
-    }
-    public String getCard02() {
-        return cardDeck[0][2];
-    }
-    public String getCard03() {
-        return cardDeck[0][3];
-    }
-    public String getCard10() {
-        return cardDeck[1][0];
-    }
-    public String getCard11() {
-        return cardDeck[1][1];
-    }
-    public String getCard12() {
-        return cardDeck[1][2];
-    }
-    public String getCard13() {
-        return cardDeck[1][3];
-    }
-    public String getCard20() {
-        return cardDeck[2][0];
-    }
-    public String getCard21() {
-        return cardDeck[2][1];
-    }
-    public String getCard22() {
-        return cardDeck[2][2];
-    }
-    public String getCard23() {
-        return cardDeck[2][3];
-    }
-    public String getCard30() {
-        return cardDeck[3][0];
-    }
-    public String getCard31() {
-        return cardDeck[3][1];
-    }
-    public String getCard32() {
-        return cardDeck[3][2];
-    }
-    public String getCard33() {
-        return cardDeck[3][3];
-    }
+	public void revealCard(int cardNumber) {
+		revealedCards.set(cardNumber,true);
+	}
+
+	public void unrevealCard(int cardNumber) {
+		revealedCards.set(cardNumber,false);
+	}
+
+	public void printRevealedCardsArray() {
+		for (int i = 0; i < revealedCards.size();i++) {
+			System.out.printf("Index Number = %d\nValue = %b\n",i,revealedCards.get(i));
+		}
+	}
+
+	public void cardsShow() {
+		for (int i=0;i<16;i++) {
+			System.out.printf("Index Number = %d\nChar = %s\n----\n",i,cardsList.get(i));
+		}
+	}
+	
+	public boolean isThisSlotEmpty(int i) {
+		if (cardsList.get(i) == null) {return true;}
+		else {return false;}
+	}
+
+	public void randomizeCards() {
+		for (String element : charsList) {
+			while (true) {
+				int randomNumber = random.nextInt(0,16);
+				if (isThisSlotEmpty(randomNumber)) {
+					placeCard(randomNumber,element);
+					break;
+				}
+			}
+			
+		}
+	}
+
+	public void placeCard(int i,String a) {
+		cardsList.set(i,a);
+	}
+
+	public void updateActiveCardFlow() {
+		for (int i = 0;i<16;i++) {
+			activeCardFlowList.set(i,null);
+		}
+		for (int i = 0;i<16;i++){
+			if(isCardRevealed(i)) {
+				activeCardFlowList.set(i,cardsList.get(i));
+			}
+			else {
+				activeCardFlowList.set(i,nunrevealedCard);
+			}
+		}
+	}
+
+	public void loadOutput() {
+		updateActiveCardFlow();
+		loadOutputFlowFull();
+		System.out.printf(outputFlowFull,co(0),co(1),co(2),co(3),co(4),co(5),co(6),co(7),co(8),
+				co(9),co(10),co(11),co(12),co(13),co(14),co(15));
+	}
+	
+	public String co(int i) {
+		return activeCardFlowList.get(i);
+	}
+
+	public void printActiveCardFlowList() {
+		for (String element : activeCardFlowList) {
+			System.out.println(element);
+		}
+	}
+
+	public boolean isSame(int i1,int i2) {
+		return (co(i1).equals(co(i2)));
+	}
 }
