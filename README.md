@@ -10,9 +10,6 @@ OutputHandler.java oyunun Almanca, Türkçe ve İngilizce sürümlerinin olması
 Oyuncudan kartların üstünde yazan kart numaralarını girerek kartları eşleştirmesi istenir.
 Oyuncu bütün kartları eşleştirildiğinde ise oyun sona erer.
 
-Almanca çevirilerin bir kısmında DeepL translator kullanılmıştır.
-www.deepl.com
-
 # EN
 This is a simple card matching game written in Java that can be played in the terminal.
 The code can be run under two different main Java files.
@@ -25,9 +22,6 @@ OutputHandler.java is written to handle multiple languages and make MainGame.jav
 
 The player matches cards by entering the numbers on the cards.
 The game ends when all cards are matched.
-
-Some German translations were done using the DeepL translator.
-www.deepl.com
 
 # DE
 Dies ist ein einfaches Kartenspiel, geschrieben in Java, das im Terminal gespielt werden kann.
