@@ -1,17 +1,46 @@
 # TR
-Java ile yazılmış, terminal/console üzerinden oynanabilen basit bir kart eşleştirme oyunudur.
-Oyuncudan, açmak istediği iki kartın satır ve sütun bilgisi istenir.
-Girilen değerlerde hatalı giriş kontrolü yapılır (örneğin 1-4 arası dışındaki sayılar veya sayı olmayan girişler engellenir).
-Kartlar eşleştiğinde açık kalır, eşleşme yoksa tekrar kapatılır.
-Tüm kartlar başarıyla eşleştirildiğinde oyun sona erer.
+Java ile yazılmış, terminal üzerinden oynanabilen basit bir kart eşleştirme oyunudur.
+Kodlar 2 farklı Main Java dosyası altında çalıştırılabilir.
+MainTest.java benim Cards.java içindeki hataları görmemi sağlayan ufak bir terminal debugerıdır.
+MainGame.java ise Cards.java ve OutputHandler.java dosyalarını kullanan asıl oyunu çalıştıran dosyadır.
+Oyuna başlamadan önce oyuncu Almanca, Türkçe ve İngilizce'den istediği dili seçip oyunu oynayabilir.
+Cards.java dosyası oyunda bulunan kart destesinin sıkıntısız bir şekilde oluşturulması için yazılmıştır.
+OutputHandler.java oyunun Almanca, Türkçe ve İngilizce sürümlerinin olmasıyla beraber MainGame.java dosyasının okunabilirliğini arttırmak için yazılmıştır.
 
-Bu proje yalnızca java.util kütüphanelerini (örneğin Scanner, Random) kullanır, harici kütüphane yoktur.
+Oyuncudan kartların üstünde yazan kart numaralarını girerek kartları eşleştirmesi istenir.
+Oyuncu bütün kartları eşleştirildiğinde ise oyun sona erer.
+
+Almanca çevirilerin bir kısmında DeepL translator kullanılmıştır.
+www.deepl.com
 
 # EN
-It is a simple card matching game written in Java that can be played via terminal/console.
-The player is asked for the row and column information of the two cards he/she wants to open.
-The values entered are checked for incorrect entries (for example, numbers other than 1-4 or non-numeric entries are blocked).
-If the cards are matched, cards remains open, if not, it is closed again.
-The game ends when all cards are successfully matched.
+This is a simple card matching game written in Java that can be played in the terminal.
+The code can be run under two different main Java files.
+MainTest.java is a small terminal debugger that helps me see errors in Cards.java.
+MainGame.java is the main game file that uses Cards.java and OutputHandler.java.
 
-This project uses only java.util libraries (e.g. Scanner, Random), no external libraries.
+Before starting the game, the player can choose a language: German, Turkish, or English.
+Cards.java is written to create the card deck without any issues.
+OutputHandler.java is written to handle multiple languages and make MainGame.java more readable.
+
+The player matches cards by entering the numbers on the cards.
+The game ends when all cards are matched.
+
+Some German translations were done using the DeepL translator.
+www.deepl.com
+
+# DE
+Dies ist ein einfaches Kartenspiel, geschrieben in Java, das im Terminal gespielt werden kann.
+Der Code kann über zwei verschiedene Main-Java-Dateien ausgeführt werden.
+MainTest.java ist ein kleines Terminal-Debugging-Programm, das mir hilft, Fehler in Cards.java zu sehen.
+MainGame.java ist die Hauptspiel-Datei, die Cards.java und OutputHandler.java verwendet.
+
+Vor Beginn des Spiels kann der Spieler eine Sprache auswählen: Deutsch, Türkisch oder Englisch.
+Cards.java erstellt das Kartendeck problemlos.
+OutputHandler.java sorgt für mehrere Sprachen und macht MainGame.java leichter lesbar.
+
+Der Spieler muss die Karten durch Eingabe der Kartennummern paaren.
+Das Spiel endet, wenn alle Karten gepaart sind.
+
+Einige deutsche Übersetzungen wurden mit dem DeepL-Übersetzer erstellt.
+www.deepl.com
